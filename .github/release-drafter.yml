@@ -1,0 +1,15 @@
+name-template: '🚀 Versión v$NEXT_PATCH_VERSION'
+tag-template: 'v$NEXT_PATCH_VERSION'
+categories:
+  - title: '✨ Features'
+    labels: ['feature', 'enhancement']
+  - title: '🐛 Fixes'
+    labels: ['bug', 'fix']
+  - title: '🛠 Refactor'
+    labels: ['refactor']
+  - title: '📝 Documentation'
+    labels: ['docs']
+change-template: '- $TITLE (#$NUMBER) by @$AUTHOR'
+template: |
+  ## 📦 Cambios en esta versión
+  $CHANGES
