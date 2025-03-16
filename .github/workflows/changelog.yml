@@ -3,10 +3,8 @@ name: Generar Changelog 🚀
 on:
   push:
     branches:
-      - release
+      - main
   pull_request:
-    branches:
-      - release
     types:
       - closed
 
