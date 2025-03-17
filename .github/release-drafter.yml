@@ -1,15 +1,21 @@
-name-template: '🚀 Versión v$NEXT_PATCH_VERSION'
+name-template: 'Version $NEXT_PATCH_VERSION 🚀'
 tag-template: 'v$NEXT_PATCH_VERSION'
 categories:
-  - title: '✨ Features'
-    labels: ['feature', 'enhancement']
-  - title: '🐛 Fixes'
-    labels: ['bug', 'fix']
-  - title: '🛠 Refactor'
+  - title: '🚀 Nuevas Funcionalidades'
+    labels: ['feature']
+  - title: '🐛 Correcciones de Errores'
+    labels: ['bug', 'hotfix']
+  - title: '🛠️ Mejoras'
+    labels: ['enhancement']
+  - title: '🔧 Refactorización'
     labels: ['refactor']
-  - title: '📝 Documentation'
-    labels: ['docs']
-change-template: '- $TITLE (#$NUMBER) by @$AUTHOR'
+change-template: '- $TITLE (#$NUMBER)'
 template: |
-  ## 📦 Cambios en esta versión
+  ## 📢 Cambios en esta versión
+  
   $CHANGES
+
+  ---
+  ℹ️ **Notas:**  
+  - Fecha de lanzamiento: $DATE  
+  - Commits incluidos: [$PREVIOUS_TAG...$TAG](https://github.com/OWNER/REPO/compare/$PREVIOUS_TAG...$TAG)  

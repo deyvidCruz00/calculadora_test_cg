@@ -1,0 +1,32 @@
+name: 🚀 Generar Release con Git Flow
+
+on:
+  push:
+    branches:
+      - master  # Solo cuando se mergea una release en main
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔥 Checkout del código
+        uses: actions/checkout@v4
+
+      - name: 🚀 Ejecutar Release Drafter
+        uses: release-drafter/release-drafter@v5
+        with:
+          config-name: release-drafter.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🚀 Publicar Release Automático (Solo en `main`)
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: false
+          prerelease: false
