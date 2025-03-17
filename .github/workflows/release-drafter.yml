@@ -3,11 +3,10 @@ name: 🚀 Generar Release con Git Flow
 on:
   push:
     branches:
-      - main  # Solo cuando se mergea una release en main
+      - master  # Solo cuando se mergea una release en main
   pull_request:
     branches:
-      - main
-      - develop
+      - master
     types: [closed]
 
 jobs:
