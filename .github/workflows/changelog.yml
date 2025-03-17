@@ -1,0 +1,37 @@
+name: Generate Changelog
+
+on:
+  push:
+    branches:
+      - release/*
+  workflow_dispatch:  # Permite ejecutarlo manualmente
+
+jobs:
+  generate-changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ Checkout del código
+        uses: actions/checkout@v3
+
+      - name: 📦 Instalar Git-Cliff
+        run: |
+          curl -s https://api.github.com/repos/orhun/git-cliff/releases/latest \
+          | grep "browser_download_url.*linux-amd64" \
+          | cut -d '"' -f 4 \
+          | wget -qi -
+          tar -xvf git-cliff-*-linux-amd64.tar.gz
+          sudo mv git-cliff /usr/local/bin/
+
+      - name: 🔍 Generar CHANGELOG.md
+        run: git-cliff -o CHANGELOG.md
+
+      - name: 📝 Commit y push del changelog
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add CHANGELOG.md
+          git commit -m "📜 Actualizar changelog"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
