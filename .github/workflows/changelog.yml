@@ -14,14 +14,12 @@ jobs:
       - name: 🛎️ Checkout del código
         uses: actions/checkout@v3
 
-      - name: 📦 Instalar Git-Cliff
-        run: |
-          curl -s https://api.github.com/repos/orhun/git-cliff/releases/latest \
-          | grep "browser_download_url.*linux-amd64" \
-          | cut -d '"' -f 4 \
-          | wget -qi -
-          tar -xvf git-cliff-*-linux-amd64.tar.gz
-          sudo mv git-cliff /usr/local/bin/
+      - - name: Instalar Git-Cliff
+  run: |
+    curl -sSL -o git-cliff.tar.gz https://github.com/orhun/git-cliff/releases/latest/download/git-cliff-linux-x86_64.tar.gz
+    tar -xvf git-cliff.tar.gz
+    sudo mv git-cliff /usr/local/bin/
+
 
       - name: 🔍 Generar CHANGELOG.md
         run: git-cliff -o CHANGELOG.md
